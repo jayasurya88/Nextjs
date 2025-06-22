@@ -14,11 +14,11 @@ export default function ContactAdminPage() {
       .then(data => setForm(data));
   }, []);
 
-  function handleChange(e: any) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");

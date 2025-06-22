@@ -1,6 +1,7 @@
 "use client";
 import AdminAuthGuard from "../components/AdminAuthGuard";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function AboutAdminPage() {
   const [bio, setBio] = useState("");
@@ -43,6 +44,7 @@ export default function AboutAdminPage() {
       setSuccess("About section updated!");
       if (result.image) setImage(result.image);
     } catch (err) {
+      console.error(err);
       setError("Failed to save. Please try again.");
     }
     setLoading(false);
@@ -72,7 +74,7 @@ export default function AboutAdminPage() {
               className="w-full px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600"
             />
             {image && (
-              <img src={image} alt="About" className="mt-4 rounded-lg w-32 h-32 object-cover border" />
+              <Image src={image} alt="About" width={128} height={128} className="mt-4 rounded-lg w-32 h-32 object-cover border" />
             )}
           </div>
           <button

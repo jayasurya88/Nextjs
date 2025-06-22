@@ -23,7 +23,7 @@ export default function ProjectsAdminPage() {
       .then(data => setProjects(data));
   }, []);
 
-  function handleChange(e: any) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
@@ -64,13 +64,18 @@ export default function ProjectsAdminPage() {
     setLoading(false);
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const projectData: Project = {
+      ...form,
+      tech: form.tech.split(",").map((t: string) => t.trim())
+    };
+
     let updated: Project[];
     if (editIndex !== null) {
-      updated = projects.map((p, i) => (i === editIndex ? { ...form, tech: form.tech.split(",").map((t: string) => t.trim()) } as Project : p));
+      updated = projects.map((p, i) => (i === editIndex ? projectData : p));
     } else {
-      updated = [...projects, { ...form, tech: form.tech.split(",").map((t: string) => t.trim()) } as Project];
+      updated = [...projects, projectData];
     }
     setProjects(updated);
     setForm({ title: "", description: "", tech: "", github: "" });

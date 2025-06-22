@@ -200,8 +200,8 @@ export default function Home() {
                     {project.github && (
                       <motion.a
                         href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                         whileHover={{ x: 5 }}
                         className="text-blue-500 hover:text-blue-600 flex items-center"
                       >

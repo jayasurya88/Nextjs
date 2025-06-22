@@ -27,6 +27,7 @@ export default function HeroAdminPage() {
       if (!res.ok) throw new Error('Failed to save');
       setSuccess('Hero section updated!');
     } catch (err) {
+      console.error(err);
       setError('Failed to save. Please try again.');
     }
     setLoading(false);

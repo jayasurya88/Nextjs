@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevOps Portfolio Website
 
-## Getting Started
+A modern, iPhone-inspired portfolio website built with Next.js and Django, featuring a beautiful UI with smooth animations and dark mode support.
 
-First, run the development server:
+## Features
 
+- 🎨 Modern, iPhone-inspired design
+- 🌓 Dark/Light mode toggle
+- ✨ Smooth animations and transitions
+- 📱 Fully responsive design
+- 🔄 Dynamic content management with Django backend
+- 🚀 Fast and SEO-friendly with Next.js
+
+## Tech Stack
+
+### Frontend
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Icons
+
+### Backend
+- Django 5.0
+- Django REST Framework
+- SQLite3 (can be changed to PostgreSQL)
+- CORS Headers
+
+## Setup Instructions
+
+### Frontend Setup
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create and activate a virtual environment:
+   ```bash
+   # Windows
+   python -m venv venv
+   .\venv\Scripts\activate
 
-## Learn More
+   # Linux/Mac
+   python -m venv venv
+   source venv/bin/activate
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Run migrations:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Create a superuser:
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-## Deploy on Vercel
+5. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Access the admin panel at [http://localhost:8000/admin](http://localhost:8000/admin)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+- `GET /api/projects/` - List all projects
+- `GET /api/services/` - List all services
+- `POST /api/contact/` - Submit contact form
+
+## Customization
+
+1. Update your personal information in `src/app/page.tsx`
+2. Modify the theme colors in `tailwind.config.js`
+3. Add/modify projects and services through the Django admin panel
+
+## Deployment
+
+### Frontend
+- Deploy to Vercel or any static hosting service
+- Update the `NEXT_PUBLIC_API_URL` in `.env` file
+
+### Backend
+- Deploy to any Python hosting service (e.g., PythonAnywhere, Heroku)
+- Update `ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS` in settings.py
+- Use environment variables for sensitive data
+
+## License
+
+MIT License

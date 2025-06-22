@@ -1,24 +1,38 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const filePath = path.join(process.cwd(), 'src/app/api/hero/hero.json');
+import { NextResponse } from 'next/server';
+import { supabase } from '@/utils/supabaseClient';
 
 export async function GET() {
-  try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    return new Response(data, { status: 200 });
-  } catch {
-    return new Response(JSON.stringify({
-      title: "Jayasurya",
-      subtitle: "Aspiring DevOps Engineer | Automating the Future",
-      buttonText: "View My Work",
-      buttonLink: "#projects"
-    }), { status: 200 });
+  const { data, error } = await supabase
+    .from('hero')
+    .select('*')
+    .single(); // We only expect one row for the hero section
+
+  if (error) {
+    console.error('Error fetching hero data:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  return NextResponse.json(data);
 }
 
-export async function POST(req) {
-  const body = await req.json();
-  await fs.writeFile(filePath, JSON.stringify(body, null, 2));
-  return new Response(JSON.stringify({ success: true }), { status: 200 });
+export async function POST(request: Request) {
+  const body = await request.json();
+
+  const { data, error } = await supabase
+    .from('hero')
+    .update({
+      title: body.title,
+      subtitle: body.subtitle,
+      button_text: body.buttonText,
+      button_link: body.buttonLink,
+    })
+    .eq('id', 1) // We are always updating the row with id = 1
+    .select();
+
+  if (error) {
+    console.error('Error updating hero data:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json(data);
 } 

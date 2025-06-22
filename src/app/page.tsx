@@ -7,7 +7,7 @@ import { BackToTop } from '@/components/BackToTop'
 import { PageTransition } from '@/components/PageTransition'
 import { SectionTransition } from '@/components/SectionTransition'
 import { ProfileImage } from '@/components/ProfileImage'
-import { FaGithub, FaLinkedin, FaDocker, FaPython, FaJava } from 'react-icons/fa'
+import { FaGithub, FaDocker, FaPython, FaJava } from 'react-icons/fa'
 import { SiKubernetes, SiGithubactions, SiAmazon, SiDjango } from 'react-icons/si'
 import Image from 'next/image'
 

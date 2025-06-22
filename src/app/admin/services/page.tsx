@@ -18,7 +18,7 @@ export default function ServicesAdminPage() {
   useEffect(() => {
     fetch("/api/services")
       .then(res => res.json())
-      .then(data => setServices(data));
+      .then(data => setServices(Array.isArray(data) ? data : []));
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {

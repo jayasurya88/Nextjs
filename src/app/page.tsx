@@ -52,8 +52,7 @@ export default function Home() {
           buttonText: data.buttonText || defaultHero.buttonText,
           buttonLink: data.buttonLink || defaultHero.buttonLink
         });
-      })
-      .catch(() => {});
+      });
     fetch('/api/about')
       .then(res => res.json())
       .then(data => {
@@ -161,6 +160,7 @@ export default function Home() {
                     alt="About"
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </motion.div>
               ) : null}
@@ -199,8 +199,8 @@ export default function Home() {
                     {project.github && (
                       <motion.a
                         href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ x: 5 }}
                         className="text-blue-500 hover:text-blue-600 flex items-center"
                       >
@@ -237,74 +237,36 @@ export default function Home() {
             </div>
         </div>
         </SectionTransition>
-
+        
         {/* Contact Section */}
         <SectionTransition id="contact" className="relative py-20 px-4 bg-white dark:bg-gray-900" delay={0.5}>
           <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-white transition-colors duration-300">Get in Touch</h2>
             <motion.div
+              key="contact-form"
               whileHover={{ scale: 1.02 }}
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl backdrop-blur-lg bg-opacity-80 dark:bg-opacity-80 transition-colors duration-300"
             >
               <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
-                  <motion.input
-                    whileFocus={{ scale: 1.01 }}
-                    type="text"
-                    className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <input type="text" placeholder="Your Name" className="w-full bg-gray-100 dark:bg-gray-700 p-4 rounded-lg border-transparent focus:ring-2 focus:ring-blue-500" />
+                  <input type="email" placeholder="Your Email" className="w-full bg-gray-100 dark:bg-gray-700 p-4 rounded-lg border-transparent focus:ring-2 focus:ring-blue-500" />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
-                  <motion.input
-                    whileFocus={{ scale: 1.01 }}
-                    type="email"
-                    className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
-                  <motion.textarea
-                    whileFocus={{ scale: 1.01 }}
-                    rows={4}
-                    className="w-full px-4 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
-                </div>
+                <textarea placeholder="Your Message" rows={5} className="w-full bg-gray-100 dark:bg-gray-700 p-4 rounded-lg border-transparent focus:ring-2 focus:ring-blue-500"></textarea>
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 transition-colors font-semibold"
                 >
                   Send Message
                 </motion.button>
               </form>
-              <div className="flex justify-center space-x-6 mt-8">
-                <motion.a
-                  href="https://github.com/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-                  whileHover={{ y: -5 }}
-                  className="text-2xl text-gray-600 dark:text-gray-300 hover:text-blue-500"
-                >
-                  <FaGithub />
-                </motion.a>
-                <motion.a
-                  href="https://linkedin.com/in/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-                  whileHover={{ y: -5 }}
-                  className="text-2xl text-gray-600 dark:text-gray-300 hover:text-blue-500"
-                >
-                  <FaLinkedin />
-                </motion.a>
-              </div>
             </motion.div>
-    </div>
+          </div>
         </SectionTransition>
-
+        
         <BackToTop />
       </main>
     </PageTransition>

@@ -21,7 +21,7 @@ export default function ServicesAdminPage() {
       .then(data => setServices(data));
   }, []);
 
-  function handleChange(e: any) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
@@ -59,7 +59,7 @@ export default function ServicesAdminPage() {
     setLoading(false);
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     let updated: Service[];
     if (editIndex !== null) {

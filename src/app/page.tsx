@@ -16,6 +16,7 @@ type Project = {
   description: string;
   tech: string[];
   github: string;
+  image: string;
 };
 
 type Service = {
@@ -37,7 +38,6 @@ const defaultAbout = {
 
 export default function Home() {
   const [hero, setHero] = useState(defaultHero);
-  const [loading, setLoading] = useState(true);
   const [about, setAbout] = useState(defaultAbout);
   const [projects, setProjects] = useState<Project[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -52,9 +52,8 @@ export default function Home() {
           buttonText: data.buttonText || defaultHero.buttonText,
           buttonLink: data.buttonLink || defaultHero.buttonLink
         });
-        setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {});
     fetch('/api/about')
       .then(res => res.json())
       .then(data => {
@@ -157,10 +156,11 @@ export default function Home() {
                   transition={{ duration: 0.6 }}
                   className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
                 >
-                  <img
+                  <Image
                     src={about.image}
                     alt="About"
-                    className="object-cover w-full h-full"
+                    fill
+                    className="object-cover"
                   />
                 </motion.div>
               ) : null}

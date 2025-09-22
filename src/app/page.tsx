@@ -169,51 +169,85 @@ export default function Home() {
         </SectionTransition>
 
         {/* Projects Section */}
-        <SectionTransition id="projects" className="relative py-20 px-4 bg-white dark:bg-gray-900" delay={0.3}>
-          <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
-          <div className="relative z-10 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-white transition-colors duration-300">Projects</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.title + index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -10 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg backdrop-blur-lg bg-opacity-80 dark:bg-opacity-80 transition-colors duration-300"
+         <SectionTransition id="projects" className="relative py-20 px-4 bg-white dark:bg-gray-900" delay={0.3}>
+  <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
+  <div className="relative z-10 max-w-6xl mx-auto">
+    <h2 className="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-white transition-colors duration-300">
+      Projects
+    </h2>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <motion.div
+          key={project.title + index}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -10 }}
+          className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg backdrop-blur-lg bg-opacity-80 dark:bg-opacity-80 transition-colors duration-300"
+        >
+          <div className="p-6">
+            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+
+            {/* Tech stack */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {Array.isArray(project.tech) &&
+                project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col gap-2">
+              {project.github && (
+                <motion.a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 5 }}
+                  className="text-blue-500 hover:text-blue-600 flex items-center"
                 >
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {Array.isArray(project.tech) && project.tech.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ x: 5 }}
-                        className="text-blue-500 hover:text-blue-600 flex items-center"
-                      >
-                        <FaGithub className="mr-2" />
-                        View on GitHub
-                      </motion.a>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                  <FaGithub className="mr-2" />
+                  View on GitHub
+                </motion.a>
+              )}
+              {project.live && (
+                <motion.a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 5 }}
+                  className="text-green-500 hover:text-green-600 flex items-center"
+                >
+                  <FaExternalLinkAlt className="mr-2" />
+                  Live Demo
+                </motion.a>
+              )}
+              {project.codeChallenge && (
+                <motion.a
+                  href={project.codeChallenge}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 5 }}
+                  className="text-purple-500 hover:text-purple-600 flex items-center"
+                >
+                  <FaCode className="mr-2" />
+                  Code Challenge
+                </motion.a>
+              )}
             </div>
           </div>
-        </SectionTransition>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</SectionTransition>
+
 
         {/* Services Section */}
         <SectionTransition id="services" className="relative py-20 px-4 bg-gray-100 dark:bg-gray-800" delay={0.4}>

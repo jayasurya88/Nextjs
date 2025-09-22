@@ -1,5 +1,5 @@
 "use client"
-
+import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion'
 import { Navbar } from '@/components/Navbar'
